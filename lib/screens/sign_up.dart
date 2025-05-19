@@ -37,18 +37,17 @@ class _EmailSignUpScreenState extends State<EmailSignUpScreen> {
         password: _passwordController.text,
       );
 
-      // Send verification email
       User? user = userCredential.user;
       await user?.sendEmailVerification();
 
-      // Create Firestore user document
-      await _firestore.collection('users').doc(user?.email).set({
-        'email': user?.email,
-        'firstname': _firstnameController.text, // Save firstname
+      /// ✅ Save data in Firestore using UID instead of email
+      await _firestore.collection('users').doc(user!.uid).set({
+        'uid': user.uid,
+        'email': user.email,
+        'firstname': _firstnameController.text,
         'createdAt': FieldValue.serverTimestamp(),
       });
 
-      // Display success message
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text("Sign-up successful! Please verify your email."),
@@ -56,14 +55,10 @@ class _EmailSignUpScreenState extends State<EmailSignUpScreen> {
         ),
       );
 
-      // Navigate to RegisteredUsersScreen
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => RegisteredUsersScreen()),
       );
-
-
-
 
     } on FirebaseAuthException catch (e) {
       String errorMessage;
