@@ -35,9 +35,7 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
   }
 
   Future<void> _requestPermissions() async {
-    setState(() {
-      _isRequesting = true;
-    });
+    setState(() => _isRequesting = true);
 
     final cameraStatus = await Permission.camera.request();
     final micStatus = await Permission.microphone.request();
@@ -47,29 +45,11 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
         _permissionsGranted = true;
         _isRequesting = false;
       });
-    } else if (cameraStatus.isPermanentlyDenied || micStatus.isPermanentlyDenied) {
-      setState(() {
-        _isRequesting = false;
-      });
-
-      // Ask user to open app settings
-      bool opened = await openAppSettings();
-      if (!opened) {
-        if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Please enable permissions from app settings')),
-          );
-        }
-      }
-      // Optionally, you can pop or do something else here if permissions are not granted
     } else {
-      setState(() {
-        _isRequesting = false;
-      });
-
+      setState(() => _isRequesting = false);
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Camera and microphone permissions are required to start the call.')),
+          const SnackBar(content: Text('Camera and microphone permissions are required')),
         );
         Navigator.of(context).pop();
       }
@@ -78,7 +58,6 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // Create a unique call ID by sorting user IDs
     final callID = [widget.userID, widget.otherUserID]..sort();
 
     return Scaffold(
@@ -93,12 +72,23 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
           userID: widget.userID,
           userName: widget.userName,
           callID: callID.join("_"),
-          config: ZegoUIKitPrebuiltCallConfig.oneOnOneVideoCall(),
+          config: ZegoUIKitPrebuiltCallConfig.oneOnOneVideoCall()
+            ..bottomMenuBar = ZegoCallBottomMenuBarConfig(
+              buttons: [
+                ZegoCallMenuBarButtonName.toggleMicrophoneButton,
+                ZegoCallMenuBarButtonName.toggleCameraButton,
+                ZegoCallMenuBarButtonName.switchCameraButton,
+                ZegoCallMenuBarButtonName.hangUpButton,
+              ],
+            ),
+          // onHangUp: () {
+          //   Navigator.of(context).pop();
+          // },
         )
             : Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('Permissions are required to start the video call.'),
+            const Text('Permissions required to start the call.'),
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: _requestPermissions,
