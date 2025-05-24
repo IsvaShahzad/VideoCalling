@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:video_app/screens/registered_users_screen.dart';
 
+import 'login_screen.dart';
+
 
 
 class EmailSignUpScreen extends StatefulWidget {
@@ -264,9 +266,9 @@ class _EmailSignUpScreenState extends State<EmailSignUpScreen> {
                           ),
                           onPressed: ()
                           {
-                            // Navigator.of(context).pushReplacement(
-                            //   MaterialPageRoute(builder: (context) => EmailLoginScreen()),
-                            // );
+                            Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(builder: (context) => EmailLoginScreen()),
+                            );
                           },
                           child: Text(
                             'Already have an account?',
