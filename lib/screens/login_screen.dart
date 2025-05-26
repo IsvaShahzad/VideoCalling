@@ -74,6 +74,15 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
       backgroundColor: Colors.white,
       body: Stack(
         children: [
+
+          Container(
+            width: double.infinity,
+            height: MediaQuery.of(context).size.height * 0.28,
+            child: Image.asset(
+              'assets/images/design1.png',
+              fit: BoxFit.cover,
+            ),
+          ),
           SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(16.0),
@@ -83,50 +92,38 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
                   // Positioned image and back arrow button
                   Stack(
                     children: [
-                      Positioned(
-                        top: 20,
-                        right: 295,
-                        child: IconButton(
-                          icon: Icon(Icons.arrow_back, color: Color(0xFF7393B3)),
-                          onPressed: () {
-                            // Navigator.of(context).pushReplacement(
-                            //   MaterialPageRoute(builder: (context) => HomeScreen()),
-                            // );
-                          },
-                        ),
-                      ),
-                      // Positioned image and text
-                      Positioned(
-                        top: 80, // Adjust as needed
-                        right: 230,
-                        child: Image.asset(
-                          'assets/images/emailpassimage.png', // Replace with your image path
-                          height: 80,
-                          width: 100,
-                        ),
-                      ),
                       Padding(
-                        padding: EdgeInsets.only(top: 190), // Adjust padding for the top space
+                        padding: EdgeInsets.only(top: 200), // Adjust padding for the top space
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              "What's your email?",
-                              style: TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'Kanit',
+                            Center(
+                              child: Text(
+                                "Login",
+                                style: TextStyle(
+                                  fontSize: 31,
+                                  fontFamily: 'Montserrat',
+                                ),
+
+
                               ),
+
+
                             ),
                             SizedBox(height: 10),
-                            Text(
-                              "We'll check if you have an account.",
-                              style: TextStyle(
-                                fontSize: 13,
-                                color: Colors.grey[800],
-                                fontFamily: 'Montserrat',
+                            Align(
+                              alignment: Alignment.center,
+                              child: Text(
+                                "Log in to existing account",
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.grey[700],
+                                  fontFamily: 'Montserrat',
+                                ),
                               ),
                             ),
+
+
                             SizedBox(height: 30),
                             // Email TextField
                             Padding(
@@ -134,10 +131,22 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
                               child: TextField(
                                 controller: _emailController,
                                 keyboardType: TextInputType.emailAddress,
+                                style: TextStyle(
+                                  color: Colors.grey[700],
+                                  fontFamily: 'Montserrat',
+                                  fontSize: 14,
+                                ),
                                 decoration: InputDecoration(
                                   labelText: 'Email',
+                                  labelStyle: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    color: Colors.grey[700],
+                                    fontSize: 14,
+                                  ),
                                   hintStyle: TextStyle(
                                     color: Colors.grey.shade400,
+                                    fontSize: 14,
+                                    fontFamily: 'Montserrat',
                                   ),
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(2),
@@ -155,6 +164,8 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
                                 ),
                               ),
                             ),
+
+
                             SizedBox(height: 20),
                             // Password TextField
                             Padding(
@@ -162,10 +173,21 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
                               child: TextField(
                                 controller: _passwordController,
                                 obscureText: true,
+                                style: TextStyle(
+                                  fontFamily: 'Montserrat', // Text input font
+                                ),
                                 decoration: InputDecoration(
                                   labelText: 'Password',
+                                  labelStyle: TextStyle(
+                                    fontFamily: 'Montserrat', // Label font
+                                    color: Colors.grey[700],
+                                    fontSize: 14,
+                                  ),
                                   hintStyle: TextStyle(
+                                    fontFamily: 'Montserrat', // Hint font
                                     color: Colors.grey.shade400,
+                                    fontSize: 14,
+
                                   ),
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(2),
@@ -183,7 +205,7 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
                                 ),
                               ),
                             ),
-                            SizedBox(height: 140),
+                            SizedBox(height: 70),
                             // Continue Button
                             Container(
                               width: double.infinity,
@@ -191,7 +213,7 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
                                 onPressed: _isLoading ? null : loginUser,
                                 style: ElevatedButton.styleFrom(
                                   foregroundColor: Colors.white,
-                                  backgroundColor: Color(0xFF7F9BB3),
+                                  backgroundColor: Color(0xFFF00008B),
                                   minimumSize: Size(double.infinity, 48),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(2),
@@ -241,12 +263,12 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Icon(Icons.email_rounded,
-                                      color: Color(0xff7393B3), size: 20.0),
+                                      color: Color(0xFFF00008B), size: 20.0),
                                   SizedBox(width: 20),
                                   Text(
                                     'Sign up with email',
                                     style: TextStyle(
-                                      color: Color(0xff7393B3),
+                                      color: Color(0xFFF00008B),
                                       fontFamily: 'Montserrat',
                                       fontWeight: FontWeight.bold,
                                       fontSize: 14,

@@ -101,9 +101,9 @@ class _EmailSignUpScreenState extends State<EmailSignUpScreen> {
         children: [
           Container(
             width: double.infinity,
-            height: MediaQuery.of(context).size.height * 0.3,
+            height: MediaQuery.of(context).size.height * 0.28,
             child: Image.asset(
-              'assets/images/friespizza.png',
+              'assets/images/design1.png',
               fit: BoxFit.cover,
             ),
           ),
@@ -161,6 +161,9 @@ class _EmailSignUpScreenState extends State<EmailSignUpScreen> {
                         ),
                         style: TextStyle(
                           color: Colors.grey[700],
+                          fontFamily: 'Montserrat',
+                          fontSize: 14
+
                         ),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -192,6 +195,8 @@ class _EmailSignUpScreenState extends State<EmailSignUpScreen> {
                         ),
                         style: TextStyle(
                           color: Colors.grey[700],
+                            fontFamily: 'Montserrat',
+                            fontSize: 14
                         ),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -231,15 +236,20 @@ class _EmailSignUpScreenState extends State<EmailSignUpScreen> {
                           }
                           return null;
                         },
+                        style: TextStyle(
+                            fontFamily: 'Montserrat',
+                            fontSize: 14
+                        ),
                       ),
-                      SizedBox(height: 100),
+
+                      SizedBox(height: 60),
                       Container(
                         width: double.infinity,
                         child: ElevatedButton(
                           onPressed: _isLoading ? null : signUpWithEmail,
                           style: ElevatedButton.styleFrom(
                             foregroundColor: Colors.white,
-                            backgroundColor: Color(0xFF7F9BB3),
+                            backgroundColor: Color(0xFFF00008B),
                             minimumSize: Size(double.infinity, 48),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(2),

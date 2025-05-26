@@ -61,7 +61,6 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
     final callID = [widget.userID, widget.otherUserID]..sort();
 
     return Scaffold(
-      appBar: AppBar(title: Text('Video Call with ${widget.otherUserName}')),
       body: Center(
         child: _isRequesting
             ? const CircularProgressIndicator()
@@ -81,9 +80,8 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
                 ZegoCallMenuBarButtonName.hangUpButton,
               ],
             ),
-          // onHangUp: () {
-          //   Navigator.of(context).pop();
-          // },
+
+
         )
             : Column(
           mainAxisAlignment: MainAxisAlignment.center,
